@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "Backend for LegalCare basic project",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "dev": "node index.js"
+    "dev": "nodemon index.js"
   },
   "author": "Irshad",
   "license": "ISC",
