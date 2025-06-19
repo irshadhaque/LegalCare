@@ -11,6 +11,7 @@ app.use(cors({
   origin: process.env.FRONTEND_URL,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
 // Express session (required for passport)
@@ -23,7 +24,6 @@ app.use(session({
     secure: true,           // Required for SameSite=None (HTTPS only)
     httpOnly: true,         // Security: prevent JS access
     maxAge: 24 * 60 * 60 * 1000, // 24h expiry
-    domain: 'legalcare.onrender.com', // Explicit domain (no wildcard)
   },
 }));
 app.use(passport.initialize());
