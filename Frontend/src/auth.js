@@ -1,7 +1,8 @@
-import api from './api';
-
 export const fetchProfile = async () => {
   try {
+
+    console.log('🍪 Document cookies:', document.cookie);
+    
     const res = await fetch('https://legalcare.onrender.com/auth/profile', {
       method: 'GET',
       credentials: 'include', // ✅ this is critical
