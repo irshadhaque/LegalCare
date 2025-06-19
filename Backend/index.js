@@ -16,7 +16,7 @@ app.use(cors({
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   cookie: {
       sameSite: 'none', 
       secure: true,   
@@ -56,7 +56,7 @@ app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
     // ✅ Redirect to frontend with user info or token (customize as needed)
-    res.redirect(307,`${process.env.FRONTEND_URL}/`);
+    res.redirect(302, process.env.FRONTEND_URL);
   }
 );
 
