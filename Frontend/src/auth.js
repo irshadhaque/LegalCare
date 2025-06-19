@@ -2,7 +2,7 @@ import api from './api';
 
 export const fetchProfile = async () => {
   try {
-    const res = await fetch(`https://legalcare.onrender.com/auth/profile`, {
+    const res = await fetch('https://legalcare.onrender.com/auth/profile', {
       method: 'GET',
       credentials: 'include', // ✅ this is critical
        headers: {
@@ -24,7 +24,7 @@ export const fetchProfile = async () => {
 
 export const logout = async () => {
   try {
-    await fetch(`https://legalcare.onrender.com/logout`, {
+    await fetch('https://legalcare.onrender.com/logout', {
       method: 'GET',
       credentials: 'include', // ✅ to send cookie with logout
     });

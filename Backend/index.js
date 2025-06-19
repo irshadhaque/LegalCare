@@ -10,22 +10,22 @@ const app = express();
 app.use(cors({
   origin: process.env.FRONTEND_URL,
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
 }));
 
 // Express session (required for passport)
 app.use(session({
-  secret: process.env.SESSION_SECRET || 'fallback-secret',
+  secret: process.env.SESSION_SECRET || 'fallback-secret-123', // Must be set!
   resave: false,
   saveUninitialized: false,
   cookie: {
-      sameSite: 'none', 
-      httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000,
-      secure: true,   
-      domain: 'legalcare.onrender.com',
-    },
+    sameSite: 'none',       // Required for cross-site cookies
+    secure: true,           // Required for SameSite=None (HTTPS only)
+    httpOnly: true,         // Security: prevent JS access
+    maxAge: 24 * 60 * 60 * 1000, // 24h expiry
+    domain: 'legalcare.onrender.com', // Explicit domain (no wildcard)
+  },
 }));
-
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -55,14 +55,22 @@ app.get('/auth/google',
   passport.authenticate('google', { scope: ['profile', 'email'] })
 );
 
+// app.get('/auth/google/callback',
+//   passport.authenticate('google', { 
+//     failureRedirect: '/',
+//     session: true  }),
+//   (req, res) => {
+//     // ✅ Redirect to frontend with user info or token (customize as needed)
+//      console.log("✅ Authentication succeeded");
+//     console.log("🧠 User in session:", req.user);
+//     res.redirect(process.env.FRONTEND_URL);
+//   }
+// );
 app.get('/auth/google/callback',
-  passport.authenticate('google', { 
-    failureRedirect: '/',
-    session: true  }),
+  passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
-    // ✅ Redirect to frontend with user info or token (customize as needed)
-     console.log("✅ Authentication succeeded");
-    console.log("🧠 User in session:", req.user);
+    console.log("✅ User authenticated. Session ID:", req.sessionID);
+    console.log("🍪 Cookie settings:", req.session.cookie);
     res.redirect(process.env.FRONTEND_URL);
   }
 );
