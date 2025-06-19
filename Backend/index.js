@@ -12,13 +12,18 @@ app.use(cors({
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
+  exposedHeaders: ['Set-Cookie'],
 }));
+
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
 
 // Express session (required for passport)
 app.use(session({
   secret: process.env.SESSION_SECRET || 'fallback-secret-123', // Must be set!
   resave: false,
   saveUninitialized: false,
+  name: 'auth.sid',
   cookie: {
     sameSite: 'none',       // Required for cross-site cookies
     secure: true,           // Required for SameSite=None (HTTPS only)
