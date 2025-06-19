@@ -56,7 +56,7 @@ app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
     // ✅ Redirect to frontend with user info or token (customize as needed)
-    res.redirect(`${process.env.FRONTEND_URL}/`);
+    res.redirect(307,`${process.env.FRONTEND_URL}/`);
   }
 );
 
