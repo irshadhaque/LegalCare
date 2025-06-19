@@ -69,6 +69,7 @@ app.get('/auth/google',
 app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
+    console.log("🧠 User details:", req.user);
     console.log("✅ User authenticated. Session ID:", req.sessionID);
     console.log("🍪 Cookie settings:", req.session.cookie);
     res.redirect(process.env.FRONTEND_URL);
