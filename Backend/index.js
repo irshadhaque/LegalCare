@@ -18,8 +18,8 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   cookie: {
-      sameSite: 'none', 
-      secure: true,   
+      sameSite: 'lax', 
+      secure: false,   
     },
 }));
 

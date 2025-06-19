@@ -10,6 +10,7 @@ export const fetchProfile = async () => {
     if (!res.ok) return null;
 
     const data = await res.json();
+    console.log('Profile data:', data);
     return data;
   } catch (err) {
     console.error("fetchProfile error", err);

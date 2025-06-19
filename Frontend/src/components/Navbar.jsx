@@ -40,11 +40,12 @@ export default function Navbar() {
       {user ? (
         <div className="relative" ref={dropdownRef}>
           <img
-            src={user.photos?.[0]?.value || 'https://via.placeholder.com/40'}
+            src={user?._json?.picture}
             alt="Profile"
             className="w-10 h-10 rounded-full border-2 border-white cursor-pointer"
             onClick={() => setDropdownOpen((prev) => !prev)}
           />
+          
 
           {dropdownOpen && (
             <div className="absolute right-0 mt-2 w-56 p-4 bg-gray-800 border border-gray-700 rounded shadow-lg z-50">
