@@ -64,7 +64,7 @@ export default function Navbar() {
         </div>
       ) : (
         <a
-          href={`${import.meta.env.VITE_BACKEND_URL}/auth/google`}
+          href={`https://legalcare.onrender.com/auth/google`}
           className="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded text-white"
         >
           Sign In

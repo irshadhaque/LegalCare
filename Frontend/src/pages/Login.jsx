@@ -2,7 +2,7 @@ import React from 'react';
 
 const Login = () => {
   const handleGoogleLogin = () => {
-    window.location.href = `${import.meta.env.VITE_BACKEND_URL}/auth/google`;
+    window.location.href = `https://legalcare.onrender.com/auth/google`;
   };
 
   return (

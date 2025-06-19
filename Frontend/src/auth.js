@@ -2,7 +2,7 @@ import api from './api';
 
 export const fetchProfile = async () => {
   try {
-    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/auth/profile`, {
+    const res = await fetch(`https://legalcare.onrender.com/auth/profile`, {
       method: 'GET',
       credentials: 'include', // ✅ this is critical
     });
