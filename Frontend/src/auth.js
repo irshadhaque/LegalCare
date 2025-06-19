@@ -5,6 +5,9 @@ export const fetchProfile = async () => {
     const res = await fetch(`https://legalcare.onrender.com/auth/profile`, {
       method: 'GET',
       credentials: 'include', // ✅ this is critical
+       headers: {
+      'Content-Type': 'application/json',
+    },
     });
 
     if (!res.ok) return null;

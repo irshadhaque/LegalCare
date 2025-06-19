@@ -14,11 +14,13 @@ app.use(cors({
 
 // Express session (required for passport)
 app.use(session({
-  secret: 'keyboard cat',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
   cookie: {
       sameSite: 'none', 
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000,
       secure: true,   
     },
 }));
@@ -53,12 +55,14 @@ app.get('/auth/google',
 );
 
 app.get('/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/' }),
+  passport.authenticate('google', { 
+    failureRedirect: '/',
+    session: true  }),
   (req, res) => {
     // ✅ Redirect to frontend with user info or token (customize as needed)
      console.log("✅ Authentication succeeded");
     console.log("🧠 User in session:", req.user);
-    res.redirect(307, process.env.FRONTEND_URL);
+    res.redirect(process.env.FRONTEND_URL);
   }
 );
 
