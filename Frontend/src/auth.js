@@ -21,7 +21,7 @@ export const fetchProfile = async () => {
 
 export const logout = async () => {
   try {
-    await fetch(`${import.meta.env.VITE_BACKEND_URL}/logout`, {
+    await fetch(`https://legalcare.onrender.com/logout`, {
       method: 'GET',
       credentials: 'include', // ✅ to send cookie with logout
     });
